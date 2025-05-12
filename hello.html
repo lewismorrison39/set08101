@@ -1,9 +1,16 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>SET08101 - Web Tech</title>
-	</head>
-	<body>
-		<h1>Hello Web Tech</h1>
-	</body>
+  <head>
+    <title>testing stuff</title>
+  </head>
+  <body>
+    <h1>Header</h1>
+    <button id="homeButton">Go to Page 2</button>
+
+    <script>
+      document.getElementById('homeButton').addEventListener('click', () => {
+        window.location.href = 'page2.html';
+      });
+    </script>
+  </body>
 </html>
