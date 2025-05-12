@@ -71,6 +71,7 @@
       color: #000;
     }
 
+    /*determines the layout of the cards */
     .game-board {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -107,7 +108,7 @@
     //creates images and duplicates to allow matching
     const allImages = [
       'Gizmo.jpg', 'Gizmo.jpg',
-      'Italy.jpg', 'Italy.jpg',
+      'italy.jpg', 'italy.jpg',
       'Glasgow.png', 'Glasgow.png',
       'Argentina.png', 'Argentina.png',
       'Brazil.jpg', 'Brazil.jpg',
@@ -136,27 +137,27 @@
       clearInterval(timerInterval);
     }//end stopTimer
 
-    function createBoard() {
-      gameBoard.innerHTML = '';
+function createBoard() {
+  gameBoard.innerHTML = '';
 
-      const shuffledImageSources = [...allImages].sort(() => Math.random() - 0.5);
+  const shuffledImageSources = [...allImages].sort(() => Math.random() - 0.5);
 
-      flippedCards = [];
-      matchedPairs = 0;
+  flippedCards = [];
+  matchedPairs = 0;
 
-      shuffledImageSources.forEach((imageSource, imageIndex) => {
-        const cardImage = document.createElement('img');
-        cardImage.src = 'back.png';
-        cardImage.dataset.src = imageSource;
-        cardImage.dataset.index = imageIndex;
-        cardImage.draggable = false; //stops the user being able to drag the card
+  shuffledImageSources.forEach((imageSource) => {
+    const cardImage = document.createElement('img');
+    cardImage.src = 'catImages/back.png';  // Path to back image in /catImages folder
+    cardImage.dataset.src = `catImages/${imageSource}`;  // Path to the actual image in /catImages folder
+    cardImage.draggable = false;
 
-        cardImage.addEventListener('click', () => handleCardClick(cardImage));
-        gameBoard.appendChild(cardImage);
-      });
-    }//end function createBoard (line 128)
+    cardImage.addEventListener('click', () => handleCardClick(cardImage));
+    gameBoard.appendChild(cardImage);
+  });
+}
 
 
+    //function to handle clicking the cards
     function handleCardClick(card) {
       if (!timerStarted) {
         startTimer();
@@ -184,8 +185,8 @@
             cardTwo.src = 'back.png';
             flippedCards.length = 0;
           }, 750); //end setTimeout
-        }//end else (line 170)/ if (line 167)
-      }//end if (line 160)
+        }//end else (line 182)/ if (line 179)
+      }//end if (line 172)
     }//end funtion handleCardClick
 
     document.getElementById('resetButton').addEventListener('click', () => {
